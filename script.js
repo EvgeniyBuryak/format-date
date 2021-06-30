@@ -17,8 +17,8 @@ function formatDate(inDate) {
     return inDate
         .toString()
         .split(' ')
-        .slice(1, 5)
-        .join(' ');
+        .slice(1, 4)
+        .join(' ') + ` ${inDate.getHours()}:${inDate.getMinutes()}`;
 }
 
 alert(formatDate(new Date(new Date - 1))); // right now
