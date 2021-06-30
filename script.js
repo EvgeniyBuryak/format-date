@@ -1,31 +1,30 @@
 function formatDate(inDate) {
-    let date = new Date();
-
-    let result = date - inDate;
+    let diff = new Date() - inDate; // diffrent milliseconds
     
-    if (result < 2)
+    if (diff < 1000)
         return "right now";
-
-    let second = result;
-    second = Math.round(second /= 1000); // ????????? ? ???????
+    
+    let second = Math.floor(diff / 1000); // transfer to seconds
 
     if (second < 60)
         return `${second} sec. ago`;
 
-    let minutes = second;
-    minutes = minutes / 60; // ????????? ? ??????
+    let minutes = second / 60; // transfer to minutes
 
     if (minutes < 60)
         return `${minutes} min. ago`;
 
-    return inDate;
+    return inDate
+        .toString()
+        .split(' ')
+        .slice(1, 5)
+        .join(' ');
 }
 
-alert(formatDate(new Date(new Date - 1))); // ????? ??????
+alert(formatDate(new Date(new Date - 1))); // right now
 
-alert(formatDate(new Date(new Date - 53 * 1000))); // "30 ???. ?????"
+alert(formatDate(new Date(new Date - 53 * 1000))); // "seconds ago"
 
-alert(formatDate(new Date(new Date - 27 * 60 * 1000))); // "5 ???. ?????"
+alert(formatDate(new Date(new Date - 27 * 60 * 1000))); // "minutes ago"
 
-// ????????? ???? ????? 31.12.2016, 20:00
-alert(formatDate(new Date(new Date - 86400 * 1000)));
+alert(formatDate(new Date(new Date - 86400 * 1000))); // date 31.12.2016, 20:00
